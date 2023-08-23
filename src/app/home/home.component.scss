@@ -1,0 +1,10 @@
+.buttons-wrapper {
+    display: inline-flex;
+    float: right;
+    gap: .7rem;
+
+    a {
+        display: flex;
+        align-items: center;
+    }
+}

@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+    <span>Mordy's Form Builder</span>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>My Forms</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <mat-nav-list>
+            <ng-container *ngFor="let form of forms; let i = index;">
+                <mat-divider *ngIf="i"></mat-divider>
+                <mat-list-item>
+                    <span>{{ form.name }}</span>
+                    <span class="buttons-wrapper">
+                        <a routerLink="/form/{{ form.id }}">
+                            <mat-icon>link</mat-icon>
+                        </a>
+                        <a routerLink="/editform/{{ form.id }}">
+                            <mat-icon>edit</mat-icon>
+                        </a>
+                    </span>
+                    <!-- <h4 matline> {{ link.info }} </h4> -->
+                </mat-list-item>
+            </ng-container>
+        </mat-nav-list>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+        <a mat-stroked-button color="primary" routerLink="/editform/">New Form</a>
+    </mat-card-actions>
+</mat-card>

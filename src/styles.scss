@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-card {
+    width: 980px;
+    max-width: 90vw;
+    margin: auto;
+    margin-top: 2rem;
+
+    mat-card-content {
+        margin: 2rem 0;
+    }
+}
+
+pre {
+    font-weight: 400;
+
+    .number-line {
+        color: #adadaf;
+    }
+
+    .string {
+        color: #934b07;
+    }
+
+    .number {
+        color: #3838ff;
+    }
+
+    .boolean {
+        color: #0097f1;
+    }
+
+    .null {
+        color: #727990;
+    }
+
+    .key {
+        color: #367ced;
+    }
+}

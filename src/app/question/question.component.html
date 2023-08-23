@@ -1,0 +1,28 @@
+<div [formGroup]="form">
+    <ng-container [ngSwitch]="question.controlType">
+
+        <mat-form-field *ngSwitchCase="'textbox'">
+            <mat-label>{{question.key}}</mat-label>
+            <input matInput [formControlName]="question.key" [type]="question.type">
+        </mat-form-field>
+
+        <mat-form-field *ngSwitchCase="'textarea'">
+            <mat-label>{{question.key}}</mat-label>
+            <textarea matInput [formControlName]="question.key" [type]="question.type"></textarea>
+        </mat-form-field>
+
+        <mat-form-field *ngSwitchCase="'dropdown'">
+            <mat-label>{{question.key}}</mat-label>
+            <mat-select [formControlName]="question.key">
+                <mat-option *ngFor="let opt of question.options" [value]="opt.val">{{opt.val}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-checkbox *ngSwitchCase="'checkbox'" [formControlName]="question.key">{{question.key}}</mat-checkbox>
+
+        <mat-radio-group *ngSwitchCase="'radio'" [formControlName]="question.key">
+            <mat-radio-button *ngFor="let opt of question.options" [value]="opt.val">{{ opt.val }}</mat-radio-button>
+        </mat-radio-group>
+
+    </ng-container>
+</div>

@@ -1,0 +1,72 @@
+<mat-toolbar color="primary">
+    <a mat-icon-button routerLink="/" matTooltip="Back To My Forms">
+        <mat-icon>arrow_back_ios</mat-icon>
+    </a>
+    <span>Mordy's Form Builder</span>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{ form.name }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <mat-form-field>
+            <mat-label>Form Name</mat-label>
+            <input matInput [(ngModel)]="form.name" required>
+        </mat-form-field>
+
+        <mat-divider></mat-divider>
+
+        <div cdkDropList (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let question of form.questions" cdkDrag class="question">
+
+                <mat-icon class="grab">menu</mat-icon>
+
+                <mat-form-field>
+                    <mat-label>Field Name</mat-label>
+                    <input matInput [(ngModel)]="question.key" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Field Type</mat-label>
+                    <mat-select [(ngModel)]="question.controlType">
+                        <mat-option value="textbox">Text Input</mat-option>
+                        <mat-option value="textarea">Text Area</mat-option>
+                        <mat-option value="dropdown">Select Dropdown</mat-option>
+                        <mat-option value="checkbox">Checkbox</mat-option>
+                        <mat-option value="radio">Radio Buttons</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div class="options" *ngIf="question.controlType == 'dropdown' || question.controlType == 'radio'">
+                    <mat-form-field *ngFor="let option of question.options; let i = index;">
+                        <mat-label>Option {{ i+1 }}</mat-label>
+                        <input matInput [(ngModel)]="option.val">
+                        <button matSuffix mat-icon-button (click)="question.options.splice(i, 1)">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                    </mat-form-field>
+                    <button mat-button color="primary" class="add-question-btn" (click)="question.options.push({val:''})">
+                        <mat-icon>add_circle_outline</mat-icon>
+                        Add Option
+                    </button>
+                </div>
+
+                <mat-checkbox *ngIf="question.controlType != 'checkbox' && question.controlType != 'radio'" [(ngModel)]="question.required">Required</mat-checkbox>
+
+            </div>
+        </div>
+
+        <button mat-button color="primary" class="add-question-btn" (click)="addQuestion()">
+            <mat-icon>add_circle_outline</mat-icon>
+            Add Question
+        </button>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!isValid" (click)="save()">Save</button>
+    </mat-card-actions>
+</mat-card>

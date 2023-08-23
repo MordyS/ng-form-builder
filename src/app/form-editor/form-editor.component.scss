@@ -1,0 +1,23 @@
+.question {
+    >* {
+        margin-right: 1rem;
+    }
+
+    .grab {
+        cursor: move;
+        cursor: grab;
+    }
+
+    .options {
+        display: inline-flex;
+        flex-direction: column;
+    }
+}
+
+.add-question-btn {
+    margin-top: 1rem;
+}
+
+mat-divider {
+    margin-bottom: 1rem;
+}

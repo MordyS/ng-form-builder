@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{ formName }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+            <ng-container *ngFor="let question of questions">
+                <app-question [question]="question" [form]="form"></app-question>
+            </ng-container>
+
+        </form>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="onSubmit()">Save</button>
+    </mat-card-actions>
+</mat-card>
+
+
+<mat-card *ngIf="payLoad">
+    <mat-card-content>
+        <strong>Mordy got the following data:</strong>
+        <br>
+        <pre [innerHTML]="payLoad | prettyjson: [true, 2]"></pre>
+    </mat-card-content>
+</mat-card>
